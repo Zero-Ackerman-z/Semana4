@@ -30,6 +30,10 @@ public class SimpleController : MonoBehaviour
         canJump = Physics.Raycast(transform.position, Vector3.down, rayDistance, groundLayers);
 
         Debug.DrawRay(transform.position, Vector3.down * rayDistance, rayDebugColor);
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        {
+            myRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
 
     }
 
@@ -37,9 +41,6 @@ public class SimpleController : MonoBehaviour
     {
         myRB.velocity = Vector3.Scale(movement, new Vector3(speed, 1, speed));
 
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
-        {
-            myRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+        
     }
 }
